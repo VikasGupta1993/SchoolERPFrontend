@@ -1,7 +1,7 @@
 <div class="limiter">
   <div class="container-login100">
     <div class="wrap-login100">
-      <form class="login100-form validate-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <form class="login100-form validate-form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
         <span class="login100-form-title pb-5">
           Login
         </span>
@@ -9,8 +9,11 @@
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Username</mat-label>
-              <input matInput formControlName="username" />
+              <input matInput formControlName="username" required>
               <mat-icon matSuffix>face</mat-icon>
+              <mat-error *ngIf="loginForm.get('username').hasError('required')">
+                Username is required
+              </mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -18,8 +21,12 @@
           <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Password</mat-label>
-              <input matInput type="password" formControlName="password">
-              <mat-icon matSuffix>vpn_key</mat-icon>
+              <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required>
+              <mat-icon matSuffix (click)="hide = !hide">
+                {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <mat-error *ngIf="loginForm.get('password').hasError('required')">
+                Password is required
+              </mat-error>
             </mat-form-field>
           </div>
         </div>

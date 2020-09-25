@@ -8,6 +8,8 @@ import {
   HostListener,
 } from '@angular/core';
 import { RightSidebarService } from '../../shared/services/rightsidebar.service';
+import { TokenStorage } from 'src/app/core/services/token.storage';
+
 const document: any = window.document;
 @Component({
   selector: 'app-header',
@@ -19,7 +21,8 @@ export class HeaderComponent implements OnInit {
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
     public elementRef: ElementRef,
-    private dataService: RightSidebarService
+    private dataService: RightSidebarService,
+    private tokenStorageData:TokenStorage
   ) { }
   notifications: any[] = [
     {
@@ -147,5 +150,9 @@ export class HeaderComponent implements OnInit {
       (this.dataService.currentStatus._isScalar = !this.dataService
         .currentStatus._isScalar)
     );
+  }
+
+  clearSessionFunc(){
+    this.tokenStorageData.signOut()
   }
 }
