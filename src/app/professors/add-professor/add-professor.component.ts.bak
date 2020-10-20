@@ -64,7 +64,7 @@ export class AddProfessorComponent {
     } 
     else 
     {
-      // token valid checked
+      // token valid
       alert("Token Valid......alive");
       this.erpHttpClientsService.addProfessorDtls(addProfessorDtls)
       .subscribe(res => {
