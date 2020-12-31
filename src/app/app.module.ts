@@ -19,6 +19,7 @@ import { StaffService } from './staff/all-staff/staff.service';
 import { HolidayService } from './holidays/all-holidays/holiday.service';
 import { FeesService } from './fees/all-fees/fees.service';
 import { RightSidebarService } from './shared/services/rightsidebar.service';
+import { ClassService } from './classes/class.service';
 import {
   PerfectScrollbarModule,
   PERFECT_SCROLLBAR_CONFIG,
@@ -47,6 +48,8 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import {TokenStorage} from '../app/core/services/token.storage';
 import { TokenInterceptorService } from './core/services/token-interceptor.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AlphabetOnlyDirective } from './utils/directive/alphabet-only.directive';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -63,6 +66,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SimpleDialogComponent,
     DialogformComponent,
     BottomSheetOverviewExampleSheet,
+    AlphabetOnlyDirective,
   ],
   imports: [
     BrowserModule,
@@ -86,6 +90,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatCheckboxModule,
     MatSlideToggleModule,
     MatMenuModule,
+    MatSnackBarModule,
     ClickOutsideModule,
     NgxMaskModule.forRoot(),
     AgmCoreModule.forRoot({
@@ -113,6 +118,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HolidayService,
     FeesService,
     TokenStorage,
+    ClassService,
   ],
   entryComponents: [
     SimpleDialogComponent,
