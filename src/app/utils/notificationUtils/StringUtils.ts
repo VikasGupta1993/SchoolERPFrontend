@@ -154,5 +154,21 @@ export class StringUtils {
             'center'
           );
     }
+
+
+    /*
+       Below are the Student CRUD Messages.
+     */
+
+
+    createStudentSuccessMsg()
+    {
+        this.showNotification(
+            'snackbar-success',
+            ' Student Added Successfully!!!!...',
+            'top',
+            'center'
+           );   
+    }
     
 }

@@ -9,7 +9,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { PageLoaderComponent } from './layout/page-loader/page-loader.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { RightSidebarComponent } from './layout/right-sidebar/right-sidebar.component';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
 import { DynamicScriptLoaderService } from './shared/services/dynamic-script-loader.service';
 import { ProfessorsService } from '../app/professors/all-professors/professors.service';
 import { StudentsService } from '../app/students/all-students/students.service';
@@ -50,6 +50,7 @@ import {TokenStorage} from '../app/core/services/token.storage';
 import { TokenInterceptorService } from './core/services/token-interceptor.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AlphabetOnlyDirective } from './utils/directive/alphabet-only.directive';
+import { StudentService } from './students/student.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -119,6 +120,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FeesService,
     TokenStorage,
     ClassService,
+    StudentService,
+    DatePipe,
   ],
   entryComponents: [
     SimpleDialogComponent,
