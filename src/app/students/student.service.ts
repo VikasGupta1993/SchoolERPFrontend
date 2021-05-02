@@ -14,4 +14,14 @@ export class StudentService {
   {
     return this.http.post(this.APP_URL + '/addstudent',formData);
   }
+
+  public getAllStudentData()
+  {
+    return this.http.get(this.APP_URL + '/getAllStudents');
+  }
+
+  public deleteStudentData(rowId: any)
+  {
+    return this.http.delete(this.APP_URL + `/deleteStudent/`+rowId);
+  }
 }

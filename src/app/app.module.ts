@@ -12,7 +12,6 @@ import { RightSidebarComponent } from './layout/right-sidebar/right-sidebar.comp
 import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
 import { DynamicScriptLoaderService } from './shared/services/dynamic-script-loader.service';
 import { ProfessorsService } from '../app/professors/all-professors/professors.service';
-import { StudentsService } from '../app/students/all-students/students.service';
 import { LibraryService } from '../app/library/all-assets/library.service';
 import { DepartmentService } from '../app/departments/all-departments/department.service';
 import { StaffService } from './staff/all-staff/staff.service';
@@ -112,7 +111,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DynamicScriptLoaderService,
     RightSidebarService,
     ProfessorsService,
-    StudentsService,
     LibraryService,
     DepartmentService,
     StaffService,

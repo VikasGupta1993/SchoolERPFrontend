@@ -27,6 +27,9 @@ import { AllStudentsComponent } from './all-students/all-students.component';
 import { DeleteDialogComponent } from './all-students/dialogs/delete/delete.component';
 import { FormDialogComponent } from './all-students/dialogs/form-dialog/form-dialog.component';
 
+
+import { MatCardModule } from '@angular/material/card';
+
 @NgModule({
   declarations: [
     AboutStudentComponent,
@@ -57,7 +60,8 @@ import { FormDialogComponent } from './all-students/dialogs/form-dialog/form-dia
     MatTabsModule,
     MatMenuModule,
     MaterialFileInputModule,
-    StudentsRoutingModule
+    StudentsRoutingModule,
+    MatCardModule
   ]
 })
 export class StudentsModule {}
