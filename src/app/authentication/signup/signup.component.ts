@@ -75,12 +75,16 @@ export class SignupComponent implements OnInit {
     } 
     else 
     {
-      const signupData = JSON.stringify(signupdtls);
-      console.log(signupData);
+      var jsonData;
+      var parseData;
 
-      this.erpHttpClientsService.addnewuser(JSON.parse(signupData))
-      .subscribe(status => {
-       if(status === 'true')
+      this.erpHttpClientsService.addnewuser(signupdtls)
+      .subscribe(res => {
+
+        jsonData = JSON.stringify(res);
+        parseData = JSON.parse(jsonData);
+        console.log(parseData.statusCode);
+       if(parseData.statusCode == 200)
        {
         alert("User has been added successfully");
         //this.router.navigate(['/dashboard/main']);

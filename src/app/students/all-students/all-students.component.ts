@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
@@ -7,6 +7,9 @@ import { StudentService } from '../student.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { StudentListData } from '../model/studentlistdata';
 import { StringUtils } from 'src/app/utils/notificationUtils/StringUtils';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialogComponent } from './dialogs/delete/delete.component';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-all-students',
@@ -19,7 +22,15 @@ export class AllStudentsComponent implements OnInit {
   isTableHasData = true;
   public studentImages : any=[];
 
+  delMultipleStud = [];
+
+  //multiple Row delete
+  selection = new SelectionModel<StudentListData>(true, []);
+  data:any;
+  
+ 
   displayedColumns : string[] = [
+    'select',
     'uploadImg',
     'admissionNo',
     'academicYear',
@@ -43,6 +54,7 @@ export class AllStudentsComponent implements OnInit {
     private studentService : StudentService,
     private stringUtils : StringUtils,
     private router : Router,
+    public dialog: MatDialog,
   ){
     this.getStudentList();
   }
@@ -89,6 +101,8 @@ export class AllStudentsComponent implements OnInit {
          {
            this.isTableHasData = true;
            this.studentList = parseData.data;
+           //multiple Row delete
+           this.data = Object.assign( this.studentList);
            this.getStudentListData();
          }
          else
@@ -107,12 +121,22 @@ export class AllStudentsComponent implements OnInit {
 
     deleteStudentData(rowId)
     {
-      this.studentService.deleteStudentData(rowId.admissionNo)
-      .subscribe(res => {
-        console.log(res);
-        this.getStudentList();
-      },(err :HttpErrorResponse) => {
-        console.log("Error while deleting Student Data");
+      const dialogRef  = this.dialog.open(DeleteDialogComponent, {
+        data: rowId,
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        if(result === 1)
+        {
+           //API for delete Single data
+          this.studentService.deleteStudentData(rowId.admissionNo)
+          .subscribe(res => {
+           console.log(res);
+           this.getStudentList();
+           this.stringUtils.deleteStudentSuccessMsg();
+        },(err :HttpErrorResponse) => {
+           console.log("Error while deleting Student Data");
+          })
+        }
       });
     }
 
@@ -123,4 +147,41 @@ export class AllStudentsComponent implements OnInit {
     refreshStudentList() {
     
     }
+
+  // Below 3 methods define to delete multiple rows
+    removeSelectedRows() {
+      const totalSelect = this.selection.selected.length;
+      this.delMultipleStud = [];
+      console.log("totalSelect "+totalSelect);
+      this.selection.selected.forEach(item => {
+       let index: number = this.data.findIndex(d => d.admissionNo == item.admissionNo);
+       console.log(index);
+       this.delMultipleStud.push(this.data[index].admissionNo);
+     });
+
+     //API for delete multiple data
+     this.studentService.deleteStudentData(this.delMultipleStud.toString())
+      .subscribe(res => { 
+        console.log(res);
+        this.selection = new SelectionModel<StudentListData>(true, []);
+        this.getStudentList();
+        this.stringUtils.deleteMultipleStudentSuccessMsg(totalSelect);
+      },(err:HttpErrorResponse) => {
+        alert("There is some error while deleting multiple student in database. ");
+      }); 
+    }
+
+    masterToggle() {
+      this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+    }
+
+    /** Whether the number of selected elements matches the total number of rows. */
+    isAllSelected() {
+     const numSelected = this.selection.selected.length;
+     const numRows = this.dataSource.data.length;
+     return numSelected === numRows;
+    }
+ 
 }

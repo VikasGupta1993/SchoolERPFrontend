@@ -76,6 +76,7 @@ export class AddClassComponent {
 
     this.classService.getAllClassList()
       .subscribe(res => {
+        console.log(res);
         jsonData = JSON.stringify(res);
         parseData = JSON.parse(jsonData);
         if(parseData.statusCode == 200)

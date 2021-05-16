@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     providedIn: 'root'
 })
 export class StringUtils {
+    
 
     constructor(private snackBar: MatSnackBar)
     {}
@@ -129,7 +130,7 @@ export class StringUtils {
     {
         this.showNotification(
             'snackbar-success',
-            ' Edit Class-Section Mapping Successfully!!!!...',
+            ' Update Class-Section Mapping Successfully!!!!...',
             'top',
             'center'
            );  
@@ -170,5 +171,24 @@ export class StringUtils {
             'center'
            );   
     }
+
+    deleteStudentSuccessMsg()
+    {
+        this.showNotification(
+            'snackbar-success',
+            ' Delete Student Mapping Successfully!!!!...', 
+            'top',
+            'center'
+           );
+    }
+
+    deleteMultipleStudentSuccessMsg(totalSelect: number) {
+        this.showNotification(
+            'snackbar-success',
+            totalSelect + ' Record Delete Successfully...!!!',
+            'top',
+            'center'
+          );
+      }
     
 }

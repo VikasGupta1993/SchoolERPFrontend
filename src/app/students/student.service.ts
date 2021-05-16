@@ -20,8 +20,13 @@ export class StudentService {
     return this.http.get(this.APP_URL + '/getAllStudents');
   }
 
-  public deleteStudentData(rowId: any)
+  public deleteStudentData(studAdmnNo)
   {
-    return this.http.delete(this.APP_URL + `/deleteStudent/`+rowId);
+    return this.http.delete(this.APP_URL + `/deleteStudent/`+studAdmnNo);
+  }
+
+  public deleteMultipleStudentData(delMultipleStudents)
+  {
+    return this.http.delete(this.APP_URL + `/delMultipleStudData/`+delMultipleStudents); 
   }
 }

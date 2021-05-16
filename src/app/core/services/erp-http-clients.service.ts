@@ -12,7 +12,7 @@ export class ErpHttpClientsService {
   constructor(private http:HttpClient) {}
 
   public addnewuser(signupData){
-    return this.http.post(this.APP_URL + '/register',signupData,{responseType:'text' as 'json'});
+    return this.http.post(this.APP_URL + '/register',signupData);
  }
 
  public isValidUser(signindata):Observable<any>{

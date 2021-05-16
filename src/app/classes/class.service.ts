@@ -59,7 +59,7 @@ export class ClassService {
    
    public addNewClassSectionData(addClassSecData)
    {
-     return this.http.post(this.APP_URLss + '/saveclasssection',addClassSecData);
+     return this.http.post(this.APP_URLss + '/saveClassSection',addClassSecData);
    }
 
    public deleteClassSectionData(rowId: any) 
