@@ -46,10 +46,11 @@ import { AgmCoreModule } from '@agm/core';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import {TokenStorage} from '../app/core/services/token.storage';
-import { TokenInterceptorService } from './core/services/token-interceptor.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AlphabetOnlyDirective } from './utils/directive/alphabet-only.directive';
 import { StudentService } from './students/student.service';
+import { StoreModule } from './store';
+import { InterceptorsService } from './core/services/interceptors/interceptors.service'; 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -92,6 +93,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatMenuModule,
     MatSnackBarModule,
     ClickOutsideModule,
+    StoreModule,
     NgxMaskModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'YOUR API KEY',
@@ -105,7 +107,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
+      useClass: InterceptorsService,
       multi: true
     },
     DynamicScriptLoaderService,

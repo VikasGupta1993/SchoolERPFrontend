@@ -153,6 +153,6 @@ export class HeaderComponent implements OnInit {
   }
 
   clearSessionFunc(){
-    this.tokenStorageData.signOut()
+     localStorage.removeItem('token');
   }
 }

@@ -1,0 +1,104 @@
+// @import '../../../../assets/scss/var';
+// @import '../../../../assets/scss/mix';
+
+// h4 {
+//     font-family: $font_normal;
+//     font-size: 24px;
+//     font-weight: 600;
+//     color: $risk-para;
+//     margin: 30px 0 20px 0;
+//     text-align: center;
+//     @media screen and (max-width: 1400px) {
+//         font-size: 22px !important;
+//     }
+//     @media screen and (max-width:991px) {
+//         font-size: 20px !important;
+//     }
+//     @media(max-width:576px) {
+//         font-size: 16px !important;
+//     }
+// }
+
+// .complete {
+//     @include flex(center, center);
+//     margin: auto;
+//     @include anonywidth(100px, 100px);
+//     padding: 0;
+//     @include radius(50%);
+//     @include shadow(5px 5px 20px $search-shadow, -5px -5px 20px $white);
+//     img {
+//         width: auto;
+//         max-width: 70%;
+//     }
+// }
+
+// .disclaimer {
+//     position: relative;
+//     @media (max-width: 991px) {
+//         height: auto;
+//     }
+//     h4 {
+//         font-family: $font_semibold;
+//         font-weight: normal;
+//     }
+//     p {
+//         color: $risk-text;
+//         font-size: 16px;
+//         font-weight: 500;
+//         text-align: center;
+//         @media(max-width: 767px) {
+//             font-size: 14px !important;
+//         }
+//         @media(max-width: 576px) {
+//             font-size: 13px !important;
+//             margin-bottom: 5px;
+//         }
+//     }
+// }
+
+// .button-wrapper {
+//     margin: 30px 0 15px 0;
+//     width: 100%;
+//     @include flex(center, center);
+//     button {
+//         &:not(:last-child) {
+//             margin-right: 25px;
+//         }
+//         &.save {
+//             @include riskActiveBtn;
+//             min-width: 151px;
+//             font-size: 18px;
+//             padding: 20px 0;
+//             margin-top: 0 !important;
+//             margin-bottom: 0 !important;
+//             font-family: $font_semibold;
+//             font-weight: normal;
+//             @media(max-width: 767px) {
+//                 padding: 15px 0;
+//                 min-width: 150px;
+//             }
+//             @media(max-width: 479px) {
+//                 min-width: 120px;
+//                 font-size: 12px;
+//             }
+//         }
+//         &.cancel {
+//             @include riskTransparentBtn;
+//             min-width: 151px;
+//             padding: 20px 0;
+//             margin-top: 0 !important;
+//             margin-bottom: 0 !important;
+//             font-size: 20px;
+//             font-family: $font_normal;
+//             font-weight: normal;
+//             @media(max-width: 767px) {
+//                 padding: 15px 0;
+//                 min-width: 150px;
+//             }
+//             @media(max-width: 479px) {
+//                 min-width: 120px;
+//                 font-size: 12px;
+//             }
+//         }
+//     }
+// }
