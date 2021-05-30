@@ -41,24 +41,23 @@ export class SigninComponent implements OnInit {
     return this.loginForm.controls;
   }
   onSubmit() {
-    this.router.navigate(['/dashboard/main']);
-    // this.submitted = true;
-    // if (this.loginForm.invalid) {
-    //   return;
-    // }
-    // this.authenticationService.doLogin(this.loginForm.value)
-    //   .subscribe(res => {
-    //     console.log(res);
-    //     if (res.statusCode == 200) {
-    //       this.token = res.authenticationJwtResponse.token;
-    //       localStorage.setItem('token', this.token);
-    //       this.utilityService.showSnackBar(res.desc);
-    //       this.router.navigate(['/dashboard/main']);
-    //     } else {
-    //       this.utilityService.showSnackBar(res.desc);
-    //     }
-    //   }, (err: HttpErrorResponse) => {
-    //     this.utilityService.showSnackBar(err.message);
-    //          });
+    this.submitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    }
+    this.authenticationService.doLogin(this.loginForm.value)
+      .subscribe(res => {
+        console.log(res);
+        if (res.statusCode == 200) {
+          this.token = res.authenticationJwtResponse.token;
+          localStorage.setItem('token', this.token);
+          this.utilityService.showSnackBar(res.desc);
+          this.router.navigate(['/dashboard/main']);
+        } else {
+          this.utilityService.showSnackBar(res.desc);
+        }
+      }, (err: HttpErrorResponse) => {
+        this.utilityService.showSnackBar(err.message);
+             });
   }
 }

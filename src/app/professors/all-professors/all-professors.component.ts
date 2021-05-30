@@ -13,6 +13,10 @@ import { FormDialogComponent } from './dialogs/form-dialog/form-dialog.component
 import { DeleteDialogComponent } from './dialogs/delete/delete.component';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { SelectionModel } from '@angular/cdk/collections';
+import { Select, Store } from '@ngxs/store';
+import { ProfessorAction } from 'src/app/store/professor/professor.action';
+import { ProfessorState } from 'src/app/store/professor';
+import { ProfessorModel } from 'src/app/store/professor/professor';
 
 @Component({
   selector: 'app-all-professors',
@@ -37,12 +41,18 @@ export class AllprofessorsComponent implements OnInit {
   selection = new SelectionModel<Professors>(true, []);
   id: number;
   professors: Professors | null;
+  @Select(ProfessorState.getProfessorList) todos$: Observable<ProfessorModel[]>;
+  professorList: ProfessorModel[] = [];
+
   constructor(
     public httpClient: HttpClient,
     public dialog: MatDialog,
     public professorsService: ProfessorsService,
-    private snackBar: MatSnackBar
-  ) {}
+    private snackBar: MatSnackBar,
+    private store: Store
+  ) {
+    this.store.dispatch(new ProfessorAction.GetProfessorList());
+  }
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild('filter', { static: true }) filter: ElementRef;
@@ -51,10 +61,15 @@ export class AllprofessorsComponent implements OnInit {
   contextMenuPosition = { x: '0px', y: '0px' };
 
   ngOnInit() {
-    this.loadData();
+  //  this.loadData();
+  this.todos$.subscribe(res => {
+   console.log(res);
+   this.professorList = res;
+
+  })
   }
   refresh() {
-    this.loadData();
+    // this.loadData();
   }
   addNew() {
     const dialogRef = this.dialog.open(FormDialogComponent, {
@@ -168,7 +183,7 @@ export class AllprofessorsComponent implements OnInit {
     );
   }
   public loadData() {
-    this.exampleDatabase = new ProfessorsService(this.httpClient);
+    // this.exampleDatabase = new ProfessorsService(this.httpClient);
     this.dataSource = new ExampleDataSource(
       this.exampleDatabase,
       this.paginator,

@@ -28,12 +28,14 @@ export class ProfessorState {
     @Action(ProfessorAction.GetProfessorList)
     getProfessors({ getState, setState }: StateContext<ProfessorStateModel>) {
         return this.professorService.getProfessors().pipe(tap((result: any) => {
-            const models = result.getModels();
-            const state = getState();
-            setState({
-                ...state,
-                 professor:models,
-            });
+            if(result.statusCode == 200) {
+                const models = result.data;
+                const state = getState();
+                setState({
+                    ...state,
+                     professor:models,
+                });
+            }
         }));
     }
 
