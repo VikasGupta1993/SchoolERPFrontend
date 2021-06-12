@@ -62,6 +62,7 @@ export class AllStudentsComponent implements OnInit {
   getStudentListData()
   {
     this.dataSource = new MatTableDataSource(this.studentList);
+    console.log("Stu"+this.studentList);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort; 
   }
@@ -114,10 +115,7 @@ export class AllStudentsComponent implements OnInit {
        });
     }
 
-    editStudentData(rowData)
-    {
     
-    }
 
     deleteStudentData(rowId)
     {
@@ -131,6 +129,7 @@ export class AllStudentsComponent implements OnInit {
           this.studentService.deleteStudentData(rowId.admissionNo)
           .subscribe(res => {
            console.log(res);
+           this.selection = new SelectionModel<StudentListData>(true, []);
            this.getStudentList();
            this.stringUtils.deleteStudentSuccessMsg();
         },(err :HttpErrorResponse) => {
@@ -151,6 +150,7 @@ export class AllStudentsComponent implements OnInit {
   // Below 3 methods define to delete multiple rows
     removeSelectedRows() {
       const totalSelect = this.selection.selected.length;
+      console.log(totalSelect);
       this.delMultipleStud = [];
       console.log("totalSelect "+totalSelect);
       this.selection.selected.forEach(item => {
@@ -183,5 +183,9 @@ export class AllStudentsComponent implements OnInit {
      const numRows = this.dataSource.data.length;
      return numSelected === numRows;
     }
- 
+
+    editStudentData(rowData)
+    {
+     console.log(rowData);
+    }
 }

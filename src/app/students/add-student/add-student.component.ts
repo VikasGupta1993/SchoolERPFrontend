@@ -75,7 +75,6 @@ export class AddStudentComponent {
   {
     this.classService.getAllClassList()
     .subscribe((res:any) => {
-      console.log(res);
       this.classList = res.data;
     },(err:HttpErrorResponse) => {
       alert("There is some error while getting class List in database.");

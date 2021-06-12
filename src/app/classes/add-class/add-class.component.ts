@@ -90,6 +90,7 @@ export class AddClassComponent {
           this.isTableHasData = false;
         }
       },(err: HttpErrorResponse) => {
+        console.log(err);
         this.stringUtils.errorClassListMsg();
      });
   }
