@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GET_PROFESSOR_LIST, SAVE_PROFESSOR } from 'src/app/constants/url';
+import { DELETE_PROFESSOR, EDIT_PROFESSOR, GET_PROFESSOR_LIST, SAVE_PROFESSOR } from 'src/app/constants/url';
 import { HttpService } from 'src/app/core/services/httpServices/http.service';
+import { ProfessorModel } from 'src/app/store/professor/professor';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -12,15 +13,15 @@ export class ProfessorService {
   constructor(private http: HttpClient) {}
 
   getProfessors() {
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'token': `Bearer ${localStorage.getItem('token')}`,
-    //      'content-type':'application/json'
-    //   })
-    // };
     return this.http.get(environment.apiUrl+GET_PROFESSOR_LIST);
   }
-  saveProfessor(requestPayload) {
-    return this.http.post(SAVE_PROFESSOR,requestPayload);
+  saveProfessor(requestPayload: ProfessorModel) {
+    return this.http.post(environment.apiUrl+SAVE_PROFESSOR,requestPayload);
+  }
+  updateProfessor(requestPayload:ProfessorModel) {
+    return this.http.post(environment.apiUrl+ EDIT_PROFESSOR ,requestPayload)
+  }
+  deleteProfessor(id: string) {
+    return this.http.post(DELETE_PROFESSOR, id);
   }
 }

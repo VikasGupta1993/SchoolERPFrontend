@@ -1,5 +1,5 @@
 export interface ProfessorModel
-{
+{     id:number
     firstname:String;
     lastname:String;
     gender:String;

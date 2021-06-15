@@ -51,22 +51,24 @@ export class ProfessorState {
     //     }))
     // }
 
-//     @Action(Tenant.UpdateTenant)
-//     updateTenant({getState, setState}: StateContext<TenantStateModel>, {id ,navigationUrl}: Tenant.UpdateTenant) {
-//         return this.executionService.findRecord(TenantModel,id).pipe(tap((result) => {
-//             let state = getState();
-//             const tenantList = state.tenant;
-//             const tenantIndex = tenantList?.findIndex(item => item.id === id);
-//             if(tenantList && tenantIndex != undefined) {
-//              tenantList[tenantIndex] = result;
-//             setState({
-//                 ...state,
-//                    tenant: tenantList,
-//             });
-//             this.router.navigate([navigationUrl]);
-//     }
-//   }));
-//  }
+    @Action(ProfessorAction.UpdateProfessor)
+    updateTenant({getState, setState}: StateContext<ProfessorStateModel>, {payload ,navigationUrl}: ProfessorAction.UpdateProfessor) {
+        return this.professorService.updateProfessor(payload).pipe(tap((result:any) => {
+            if(result.statusCode === 200) {
+                let state = getState();
+                const tenantList = state.professor;
+                const tenantIndex = tenantList?.findIndex(item => item.id === payload.id);
+            }
+                // if(tenantList && tenantIndex != undefined) {
+    //          tenantList[tenantIndex] = result;
+    //         setState({
+    //             ...state,
+    //                tenant: tenantList,
+    //         });
+    //         this.router.navigate([navigationUrl]);
+    // }
+  }));
+ }
 
  @Action(ProfessorAction.AddProfessor)
  addProfessor({getState, setState}: StateContext<ProfessorStateModel>, {payload}: ProfessorAction.AddProfessor) {
@@ -80,4 +82,21 @@ export class ProfessorState {
         //  this.router.navigate([navigationUrl]);
      }));
  }
+//  @Action(ProfessorAction.HoldProfessorData)
+//  holdProfessor({getState, setState}: StateContext<ProfessorStateModel>, {payload}: ProfessorAction.AddProfessor) {
+//      if (payload) {
+//         const state = getState();
+//         state.professor.forEach(data => {
+//             if (data.id == payload.id) {
+//              state.professor.push(payload);
+//             }
+//         })
+//         // state.professor?.push(payload);
+//         setState({
+//             ...state,
+//             professor: state.professor
+//         })
+//      }   
+//         //  this.router.navigate([navigationUrl]);
+//  }
 }

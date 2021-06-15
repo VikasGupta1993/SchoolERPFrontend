@@ -48,6 +48,7 @@ export class InterceptorsService {
 
   private handleAuthError() {
     localStorage.removeItem('token');
-    this.router.navigateByUrl('signIn');
+    this.utilityService.showSnackBar('Auth token has been expired');
+    this.router.navigateByUrl('/authentication/signin');
   }
 }

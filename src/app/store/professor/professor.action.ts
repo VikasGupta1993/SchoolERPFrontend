@@ -10,11 +10,15 @@ export namespace ProfessorAction {
     }
     export class UpdateProfessor {
         static readonly type = '[Professor] Update';
-        constructor(public id: string , public navigationUrl: string ) {}
+        constructor(public payload: ProfessorModel, public navigationUrl: string ) {}
     }
-
     export class AddProfessor {
         static readonly type = '[Profesor] Add';
         constructor(public payload: any) {}
     }
+    export class HoldProfessorData {
+        static readonly type = '[Professor] HoldData';
+        constructor(public payload: ProfessorModel , public navigationUrl: string ) {}
+    }
+    
 }
