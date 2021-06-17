@@ -22,28 +22,47 @@ export class InterceptorsService {
     private utilityService: UtilityService,
     private loaderService: LoaderService) {
   }
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if(localStorage.getItem('token')) {
-    request = request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-        'Content-Type': 'application/json'
-      }
-    });
-  }
-    return next.handle(request).pipe(
-      catchError(
-        (err, caught) => {
-          if (err.status === 401){
-            this.handleAuthError();
-            return of(err);
-          } else if(err.status) {
+  // intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  //   if(localStorage.getItem('token')) {
+  //   let token = localStorage.getItem('token');
+  //   request = request.clone({
+  //     setHeaders: {
+  //       Authorization: `Bearer ${token}`,
+  //       'Content-Type': 'application/json'
+  //     }
+  //   });
+  // }
+  //   return next.handle(request).pipe(
+  //     catchError(
+  //       (err, caught) => {
+  //         if (err.status === 401){
+  //           this.handleAuthError();
+  //           return of(err);
+  //         } else if(err.status) {
                
-          }
-          throw err;
+  //         }
+  //         throw err;
+  //       }
+  //     )
+  //   );
+  // }
+  intercept(req, next) {
+    // let authService = this.injector.get(TokenStorage)
+    let authToken = localStorage.getItem('token');
+    let tokenizedReq;
+    if(authToken != null)
+    {
+      tokenizedReq = req.clone(
+        {
+          headers: req.headers.set('Authorization', 'Bearer ' + authToken)
         }
       )
-    );
+    }
+    else
+     {
+      tokenizedReq = req.clone()
+     }
+     return next.handle(tokenizedReq)
   }
 
   private handleAuthError() {

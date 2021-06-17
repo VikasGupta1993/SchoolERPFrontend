@@ -49,7 +49,6 @@ export class AddProfessorComponent {
     this.fileName=files;
   }
 
-
   onSubmit(profForm: any) {
 
   if(profForm.invalid) {

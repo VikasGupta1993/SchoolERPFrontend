@@ -36,6 +36,7 @@ export class SigninComponent implements OnInit {
     });
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    localStorage.removeItem('token');
   }
   get f() {
     return this.loginForm.controls;
