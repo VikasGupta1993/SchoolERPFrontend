@@ -19,6 +19,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatCardModule } from '@angular/material/card';
 
 import { FeesRoutingModule } from './fees-routing.module';
 import { AllFeesComponent } from './all-fees/all-fees.component';
@@ -27,6 +28,7 @@ import { EditFeesComponent } from './edit-fees/edit-fees.component';
 import { FeeReceiptComponent } from './fee-receipt/fee-receipt.component';
 import { DeleteDialogComponent } from './all-fees/dialogs/delete/delete.component';
 import { FormDialogComponent } from './all-fees/dialogs/form-dialog/form-dialog.component';
+import { AddInstallmentComponent } from './add-installment/add-installment.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { FormDialogComponent } from './all-fees/dialogs/form-dialog/form-dialog.
     EditFeesComponent,
     FeeReceiptComponent,
     DeleteDialogComponent,
-    FormDialogComponent
+    FormDialogComponent,
+    AddInstallmentComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +62,8 @@ import { FormDialogComponent } from './all-fees/dialogs/form-dialog/form-dialog.
     MaterialFileInputModule,
     MatDatepickerModule,
     MatMenuModule,
-    MatRadioModule
+    MatRadioModule,
+    MatCardModule
   ]
 })
 export class FeesModule {}

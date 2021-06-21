@@ -1,0 +1,78 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style ">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">All Fees Installment</h4>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-1">
+                            <a routerLink="/dashboard/main">
+                                <i class="fas fa-home"></i> Home</a> 
+                        </li>
+                        <li class="breadcrumb-item bcrumb-2">
+                            <a href="#" onClick="return false;">fees</a>
+                        </li>
+                        <li class="breadcrumb-item active">All</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-md-6 col-lg-4">
+            <form class="m-4" [formGroup]="addFeeInstallment" (ngSubmit)="onSubmit(addFeeInstallment.value)">
+                <mat-card class="addCard">
+                    <mat-card-header>
+                        <mat-card-title>Add New Installment</mat-card-title>
+                    </mat-card-header> 
+                    
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Installment Name</mat-label>
+                        <input matInput formControlName="installmentName" required>
+                        <mat-error *ngIf="addFeeInstallment.get('installmentName').hasError('required')">
+                            Installment name is required
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Installment Last Date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="instLastDate" required>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker touchUi></mat-datepicker>
+                        <mat-error *ngIf="addFeeInstallment.get('instLastDate').hasError('required')">
+                            Installment Last Date is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Monthly Installment</mat-label>
+                        <mat-select formControlName="monthlyInst" multiple>
+                          <mat-option class="matOption" *ngFor="let monthInst of feeMonthlyInstallment" [value]="monthInst">{{monthInst.monthName}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="addFeeInstallment.get('monthlyInst').hasError('required')">
+                            Monthly Installment is required
+                        </mat-error> 
+                        <mat-error *ngIf="addFeeInstallment.get('monthlyInst').hasError('validateLocation')">
+                            Monthly Installment can not be skipped
+                        </mat-error>
+                    </mat-form-field>
+                    <!-- <div *ngIf="errorMonthlyInstallment">
+                        Monthly Installment can not be skipped
+                    </div>   -->
+                      
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                            <button class="mr-3" [disabled]="!addFeeInstallment.valid " mat-raised-button color="primary">Submit</button>
+                            <button type="reset" id="btnreset" mat-button>Reset</button>
+                        </div>
+                    </div>
+                </mat-card> 
+            </form>
+        </div>
+    </div>  
+</section>
+
+
+
+

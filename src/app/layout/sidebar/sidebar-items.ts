@@ -378,6 +378,15 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
       {
+        path: '/fees/add-installment',
+        title: 'Add Installment',
+        iconType: '',
+        icon: '',
+        class: 'ml-menu',
+        groupTitle: false,
+        submenu: [],
+      },
+      {
         path: '/fees/add-fees',
         title: 'Add Fees',
         iconType: '',

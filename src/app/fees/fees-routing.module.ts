@@ -4,11 +4,16 @@ import { AllFeesComponent } from './all-fees/all-fees.component';
 import { AddFeesComponent } from './add-fees/add-fees.component';
 import { EditFeesComponent } from './edit-fees/edit-fees.component';
 import { FeeReceiptComponent } from './fee-receipt/fee-receipt.component';
+import { AddInstallmentComponent } from './add-installment/add-installment.component';
 
 const routes: Routes = [
   {
     path: 'all-fees',
     component: AllFeesComponent
+  },
+  {
+    path: 'add-installment',
+    component: AddInstallmentComponent
   },
   {
     path: 'add-fees',
