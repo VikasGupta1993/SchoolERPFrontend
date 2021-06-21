@@ -6,7 +6,7 @@ export namespace ProfessorAction {
     }
     export class RemoveProfessor{
         static readonly type = '[Professor] Remove';
-        constructor(public id: string) {}
+        constructor(public professorId: any) {}
     }
     export class UpdateProfessor {
         static readonly type = '[Professor] Update';
@@ -14,11 +14,10 @@ export namespace ProfessorAction {
     }
     export class AddProfessor {
         static readonly type = '[Profesor] Add';
-        constructor(public payload: any) {}
+        constructor(public payload: FormData) {}
     }
     export class HoldProfessorData {
         static readonly type = '[Professor] HoldData';
         constructor(public payload: ProfessorModel , public navigationUrl: string ) {}
     }
-    
 }

@@ -19,6 +19,7 @@ import { ProfessorState } from 'src/app/store/professor';
 import { ProfessorModel } from 'src/app/store/professor/professor';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { DELETE_PROFESSOR } from 'src/app/constants/url';
 
 @Component({
   selector: 'app-all-professors',
@@ -40,7 +41,6 @@ export class AllprofessorsComponent implements OnInit {
   ];
   exampleDatabase: ProfessorsService | null;
   selection = new SelectionModel<Professors>(true, []);
-  id: number;
   professors: Professors | null;
   @Select(ProfessorState.getProfessorList) todos$: Observable<ProfessorModel[]>;
   professorList: ProfessorModel[] = [];
@@ -101,8 +101,7 @@ export class AllprofessorsComponent implements OnInit {
   //   });
   // }
   editCall(row) {
-    this.id = row.id;
-    console.log(this.id);
+    let professorId = row.id;
     this.route.navigateByUrl('professors/edit-professor');
     //  this.store.dispatch(new ProfessorAction.HoldProfessorData(row ,'/edit-professor'));
     // const dialogRef = this.dialog.open(FormDialogComponent, {
@@ -133,8 +132,9 @@ export class AllprofessorsComponent implements OnInit {
     // });
   }
   deleteItem(row) {
-    this.id = row.id;
-    console.log(this.id);
+    let professorId = row.id;
+    // console.log(this.id);
+    this.store.dispatch(new ProfessorAction.RemoveProfessor(professorId));
     // const dialogRef = this.dialog.open(DeleteDialogComponent, {
     //   data: row,
     // });

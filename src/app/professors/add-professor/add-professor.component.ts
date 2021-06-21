@@ -13,14 +13,13 @@ import { ProfessorAction } from 'src/app/store/professor/professor.action';
 export class AddProfessorComponent {
 
   proForm: FormGroup;
-  fileName:string;
+  fileName: string;
 
   constructor(
     private fb: FormBuilder,
-    private store : Store,
-    private tokenStorageData:TokenStorage,
-    private router:Router)
-    {}
+    private store: Store,
+    private tokenStorageData: TokenStorage,
+    private router: Router) { }
 
   ngOnInit() {
     this.proForm = this.fb.group({
@@ -44,24 +43,24 @@ export class AddProfessorComponent {
   }
 
 
-  onFileChange(event) {    
+  onFileChange(event) {
     let files = event.target.files[0];
-    this.fileName=files;
+    this.fileName = files;
   }
 
   onSubmit(profForm: any) {
 
-  if(profForm.invalid) {
-    return;
-  }
-  console.log(profForm.value);
+    if (profForm.invalid) {
+      return;
+    }
+    console.log(profForm.value);
     profForm.get('uploadImg').setValue('');
 
     const formData = new FormData();
-    formData.append('professorObj',JSON.stringify(profForm.value));
-    formData.append('professorImg',this.fileName);
-    this.store.dispatch(new ProfessorAction.AddProfessor(formData)).subscribe((res:any) => {
-           console.log(res);
+    formData.append('professorObj', JSON.stringify(profForm.value));
+    formData.append('professorImg', this.fileName);
+    this.store.dispatch(new ProfessorAction.AddProfessor(formData)).subscribe((res: any) => {
+      console.log(res);
     });
 
     // if (this.tokenExpired(this.tokenStorageData.getToken())) 

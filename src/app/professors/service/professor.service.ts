@@ -10,18 +10,18 @@ import { environment } from 'src/environments/environment';
 })
 export class ProfessorService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpService) {}
 
   getProfessors() {
-    return this.http.get(environment.apiUrl+GET_PROFESSOR_LIST);
+    return this.http.get(GET_PROFESSOR_LIST);
   }
-  saveProfessor(requestPayload: ProfessorModel) {
-    return this.http.post(environment.apiUrl+SAVE_PROFESSOR,requestPayload);
+  saveProfessor(requestPayload) {
+    return this.http.post(SAVE_PROFESSOR,requestPayload);
   }
   updateProfessor(requestPayload:ProfessorModel) {
-    return this.http.post(environment.apiUrl+ EDIT_PROFESSOR ,requestPayload)
+    return this.http.post(EDIT_PROFESSOR ,requestPayload)
   }
-  deleteProfessor(id: string) {
-    return this.http.post(DELETE_PROFESSOR, id);
+  deleteProfessor(id: any) {
+    return this.http.delete(DELETE_PROFESSOR+id);
   }
 }

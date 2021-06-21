@@ -125,7 +125,7 @@
                                                         </mat-header-cell>
                                                         <mat-cell *matCellDef="let row"
                                                             (contextmenu)="onContextMenu($event, row)">
-                                                            {{row.firstName+row.lastname}}
+                                                            {{row.firstname +row.lastname}}
                                                         </mat-cell>
                                                     </ng-container>
                                                     <ng-container matColumnDef="department">
@@ -200,11 +200,11 @@
                                                     </mat-row>
                                                 </mat-table>
                                                 <!-- context menu start -->
-                                                <div style="visibility: hidden; position: fixed"
+                                                <!-- <div style="visibility: hidden; position: fixed"
                                                     [style.left]="contextMenuPosition.x"
                                                     [style.top]="contextMenuPosition.y"
                                                     [matMenuTriggerFor]="contextMenu">
-                                                </div>
+                                                </div> -->
                                                 <!-- <mat-menu #contextMenu="matMenu">
                                                     <ng-template matMenuContent let-item="item">
                                                         <button mat-menu-item (click)="addNew()">
@@ -262,7 +262,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="tab2">
+                        <!-- <div class="tab-pane" id="tab2">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="card border-apply">
@@ -553,7 +553,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

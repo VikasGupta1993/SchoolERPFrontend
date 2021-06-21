@@ -22,8 +22,10 @@ export class InterceptorsService {
     private utilityService: UtilityService,
     private loaderService: LoaderService) {
   }
+
   // intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
   //   if(localStorage.getItem('token')) {
+  //     this.loaderService.showLoader(true);
   //   let token = localStorage.getItem('token');
   //   request = request.clone({
   //     setHeaders: {
@@ -32,19 +34,69 @@ export class InterceptorsService {
   //     }
   //   });
   // }
-  //   return next.handle(request).pipe(
-  //     catchError(
-  //       (err, caught) => {
-  //         if (err.status === 401){
-  //           this.handleAuthError();
-  //           return of(err);
-  //         } else if(err.status) {
-               
+  // return next.handle(request).pipe(
+  //   tap(
+  //     (data) => {
+  //       if (data instanceof HttpResponse) {
+  //         // this.decreaseRequests();
+  //         this.loaderService.showLoader(false);
+  //         if (data.body.code == 401) {
+  //           {
+  //             this.utilityService.showSnackBar('Your Session has been expired. Please try after Sometime!');
+  //             localStorage.clear();
+  //             this.router.navigate(['']);
+  //           }
   //         }
-  //         throw err;
   //       }
-  //     )
-  //   );
+  //     },
+  //     (err: any) => {
+  //       // this.decreaseRequests();
+  //       if (err instanceof HttpErrorResponse) {
+  //         if (err.status == 0) {
+  //           this.utilityService.showSnackBar('Please check your internet connection');
+  //         }
+  //         if (err.status === 0) {
+  //           //   this._toast.warning('Please check your internet connection and try again later.');
+  //         } else if (this.unAuthorisedCodes.includes(err.status)) {
+  //           //clearToken();
+  //           //this.router.navigate([LOGIN.fullUrl]);
+  //           this.utilityService.showSnackBar(err.error.message);
+  //           return;
+  //         } else if (err.status === 504) {
+  //           //   this._toast.warning('API Server is not working!');
+  //         }
+  //         //this._toast.error(err.error.message);
+  //       }
+  //       this.loaderService.showLoader(false);
+  //     }
+  //   )
+  // );
+    // return next.handle(request).pipe(
+    //   (data) => {
+    //     if (data instanceof HttpResponse) {
+    //       // this.decreaseRequests();
+    //       this.loaderService.showLoader(false);
+    //       if (data.body.code == 401) {
+    //         {
+    //           this.utilityService.showSnackBar('Your Session has been expired. Please try after Sometime!');
+    //           localStorage.clear();
+    //           this.router.navigate([LOGIN]);
+    //         }
+    //       }
+    //     }
+    //   },
+    //   catchError(
+    //     (err, caught) => {
+    //       if (err.status === 401){
+    //         this.handleAuthError();
+    //         return of(err);
+    //       } else if(err.status) {
+               
+    //       }
+    //       throw err;
+    //     }
+    //   )
+    // );
   // }
   intercept(req, next) {
     // let authService = this.injector.get(TokenStorage)

@@ -15,18 +15,18 @@ export class EditProfessorComponent {
   proForm: FormGroup;
   @Select(ProfessorState.getProfessorList) todos$: Observable<ProfessorModel[]>;
   formdata = {
-    first: 'Pooja',
-    last: 'Sarma',
-    gender: 'female',
-    mobile: '123456789',
-    password: '123',
-    conformPassword: '123',
-    email: 'test@example.com',
-    designation: 'Sr. Professor',
-    department: 'science',
-    address: '101, Elanxa, New Yourk',
-    dob: '1987-02-17T14:22:18Z',
-    education: 'M.Sc.,P.H.D.',
+    first: '',
+    last: '',
+    gender: '',
+    mobile: '',
+    password: '',
+    conformPassword: '',
+    email: '',
+    designation: '',
+    department: '',
+    address: '',
+    dob: '',
+    education: '',
     uploadImg: '',
   };
   professorList: ProfessorModel[];
@@ -54,8 +54,8 @@ export class EditProfessorComponent {
   createContactForm(): FormGroup {
     return this.fb.group({
       id:[''],
-      firstName: [ '', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
-      lastName: [''],
+      firstname: [ '', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
+      lastname: [''],
       gender: ['', [Validators.required]],
       mobile: ['', [Validators.required]],
       password: [''],
@@ -69,16 +69,15 @@ export class EditProfessorComponent {
       address: [''],
       dob: ['', [Validators.required]],
       education: [''],
-      // uploadImg: [''
-     // ],
+      uploadImg: [''],
     });
   }
   setFormData() {
     if(this.professorList) {
       this.professorList.forEach(data => {
          this.proForm.get('id').setValue(data.id);
-         this.proForm.get('firstName').setValue(data.firstname);
-         this.proForm.get('lastName').setValue(data.lastname);
+         this.proForm.get('firstname').setValue(data.firstname);
+         this.proForm.get('lastname').setValue(data.lastname);
          this.proForm.get('gender').setValue(data.gender);
          this.proForm.get('mobile').setValue(data.mobile);
          this.proForm.get('password').setValue(data.password);
@@ -89,6 +88,7 @@ export class EditProfessorComponent {
          this.proForm.get('address').setValue(data.address);
          this.proForm.get('dob').setValue(data.dob);
          this.proForm.get('education').setValue(data.education);
+         this.proForm.get('uploadImg').setValue('');
         //  this.proForm.get('address').setValue(data.address);
       })
     }
