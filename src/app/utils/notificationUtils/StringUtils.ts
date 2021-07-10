@@ -190,5 +190,67 @@ export class StringUtils {
             'center'
           );
       }
+
+
+
+       /*
+       Below are the Fees-Component CRUD Messages.
+     */
+
+
+    createFeeInstallmentSuccessMsg()
+    {
+        this.showNotification(
+            'snackbar-success',
+            ' Added Fee-Installment Mapping Successfully!!!!...',
+            'top',
+            'center'
+           );   
+    }
+
+    deleteFeeInstallmentSuccessMsg()
+    {
+        this.showNotification(
+            'snackbar-success',
+            'Fee Installment Deleted Successfully!!!!...', 
+            'top',
+            'center'
+           );
+    }
+
     
+       /*
+       Below are the Fees-Installment CRUD Messages.
+     */
+
+
+       createFeeComponentSuccessMsg()
+       {
+           this.showNotification(
+               'snackbar-success',
+               ' Added Fee-Component Mapping Successfully!!!!...',
+               'top',
+               'center'
+              );   
+       }
+   
+       deleteFeeComponentSuccessMsg()
+       {
+           this.showNotification(
+               'snackbar-success',
+               'Fee Component Deleted Successfully!!!!...', 
+               'top',
+               'center'
+              );
+       }
+
+       editFeeComponentSuccessMsg()
+       {
+           this.showNotification(
+               'snackbar-success',
+               ' Edit Fee-Component Mapping Successfully!!!!...',
+               'top',
+               'center'
+              );   
+       }
 }

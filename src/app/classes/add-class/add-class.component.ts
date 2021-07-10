@@ -45,7 +45,7 @@ export class AddClassComponent {
     private classService : ClassService,
     private stringUtils:StringUtils,
     public dialog: MatDialog,){
-   this.getclassList();
+    this.getclassList();
   }
 
 

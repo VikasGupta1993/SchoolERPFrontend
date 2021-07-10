@@ -47,19 +47,13 @@
 
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
                         <mat-label>Monthly Installment</mat-label>
-                        <mat-select formControlName="monthlyInst" multiple>
-                          <mat-option class="matOption" *ngFor="let monthInst of feeMonthlyInstallment" [value]="monthInst">{{monthInst.monthName}}</mat-option>
+                        <mat-select formControlName="monthlyInst" multiple (selectionChange)="selectInstMonths($event)">
+                          <mat-option class="matOption" *ngFor="let monthInst of filteredMonthlyInstallment" [value]="monthInst">{{monthInst.monthName}}</mat-option>
                         </mat-select>
                         <mat-error *ngIf="addFeeInstallment.get('monthlyInst').hasError('required')">
                             Monthly Installment is required
                         </mat-error> 
-                        <mat-error *ngIf="addFeeInstallment.get('monthlyInst').hasError('validateLocation')">
-                            Monthly Installment can not be skipped
-                        </mat-error>
                     </mat-form-field>
-                    <!-- <div *ngIf="errorMonthlyInstallment">
-                        Monthly Installment can not be skipped
-                    </div>   -->
                       
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
@@ -70,8 +64,115 @@
                 </mat-card> 
             </form>
         </div>
+        <div class="col-sm-9 col-md-6 col-lg-8">
+            <mat-card class="addCard">
+                <mat-card-header>
+                    <mat-card-title>All Fees Installment Lists</mat-card-title>
+                </mat-card-header>
+                <mat-form-field>
+                    <mat-label>Search Fees Installment</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ABC" #input>
+                  </mat-form-field>
+                  
+                  <div class="mat-elevation-z8">
+                    <form class="m-4" [formGroup]="editFeeInstallmentData">   
+                    <table mat-table [dataSource]="dataSource" [hidden]="!isTableSearchData" [hidden]="!isTableHasData" matSort>
+                  
+                      <!-- ID Column -->
+                      <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                      </ng-container>
+                      
+                      <!-- Progress Column -->
+                      <ng-container matColumnDef="installmentName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Installment Name </th>
+                        <td mat-cell *matCellDef="let row">
+                            <div *ngIf="isEdit == row.id">
+                                <mat-form-field floatLabel="never">
+                                    <input type="text" matInput formControlName="installmentName">
+                                </mat-form-field> 
+                            </div>
+                            <div *ngIf="isEdit != row.id">
+                              <span>
+                                {{row.installmentName}}
+                              </span>
+                            </div>
+                        </td>
+                      </ng-container>
+                  
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="instLastDate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Installment Last Date </th>
+                        <td mat-cell *matCellDef="let row"> 
+                            <div *ngIf="isEdit == row.id">
+                                <mat-form-field floatLabel="never">
+                                    <input matInput [matDatepicker]="picker" formControlName="instLastDate" required>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker touchUi></mat-datepicker>
+                                </mat-form-field>   
+                            </div>
+                            <div *ngIf="isEdit != row.id">
+                              <span>
+                                {{row.instLastDate}} 
+                              </span>
+                            </div> 
+                        </td>
+                      </ng-container>
+                  
+                      <!-- Color Column -->
+                      <ng-container matColumnDef="installMonths">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Installment Month </th>
+                        <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.installMonths}} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>  
+                        <td mat-cell *matCellDef="let row;" class="pr-0">
+                            <div *ngIf="isEdit == row.id">
+                                <button mat-icon-button color="accent" class="material-icons" [disabled]="!editFeeInstallmentData.valid " (click)="editFeeInstallmentRow(row)">
+                                    <mat-icon class="col-white">check_circle </mat-icon>
+                                </button>
+                                <button mat-icon-button color="accent" class="btn-tbl-delete" (click)="clearFeeInstallmentRow()">
+                                    <mat-icon class="material-icons">clear </mat-icon>
+                                </button> 
+                            </div>
+                            <div *ngIf="isEdit != row.id">
+                              <span>
+                                <button mat-icon-button color="accent" class="btn-tbl-edit" (click)="editFeeInstallment(row)">
+                                    <mat-icon aria-label="Edit" class="col-white">edit
+                                    </mat-icon>
+                                </button>
+                                <button mat-icon-button color="accent"
+                                    class="btn-tbl-delete" (click)="deleteFeeInstallment(row)">
+                                    <mat-icon aria-label="Delete" class="col-white">delete
+                                    </mat-icon>
+                                </button> 
+                              </span>
+                            </div>  
+                        </td>
+                      </ng-container>
+                  
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    </form>
+                    <div [hidden]="isTableSearchData">
+                        No data matching the filter "{{input.value}}"
+                    </div>
+                    <div [hidden]="isTableHasData">
+                        No record found
+                    </div>
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                  </div>
+            </mat-card>
+        </div>
     </div>  
 </section>
+
+
+
+
 
 
 

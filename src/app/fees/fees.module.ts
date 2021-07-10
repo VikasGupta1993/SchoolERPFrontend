@@ -29,6 +29,10 @@ import { FeeReceiptComponent } from './fee-receipt/fee-receipt.component';
 import { DeleteDialogComponent } from './all-fees/dialogs/delete/delete.component';
 import { FormDialogComponent } from './all-fees/dialogs/form-dialog/form-dialog.component';
 import { AddInstallmentComponent } from './add-installment/add-installment.component';
+import { DeleteFeeInstallmentComponent } from './add-installment/dialog/delete-fee-installment/delete-fee-installment.component';
+import { AddFeeTypeComponent } from './add-fee-type/add-fee-type.component';
+import { DeleteFeeTypeComponent } from './add-fee-type/dialog/delete-fee-type/delete-fee-type.component';
+import { FeeStructureComponent } from './fee-structure/fee-structure.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,11 @@ import { AddInstallmentComponent } from './add-installment/add-installment.compo
     FeeReceiptComponent,
     DeleteDialogComponent,
     FormDialogComponent,
-    AddInstallmentComponent
+    AddInstallmentComponent,
+    DeleteFeeInstallmentComponent,
+    AddFeeTypeComponent,
+    DeleteFeeTypeComponent,
+    FeeStructureComponent
   ],
   imports: [
     CommonModule,

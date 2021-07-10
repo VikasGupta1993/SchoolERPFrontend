@@ -5,6 +5,8 @@ import { AddFeesComponent } from './add-fees/add-fees.component';
 import { EditFeesComponent } from './edit-fees/edit-fees.component';
 import { FeeReceiptComponent } from './fee-receipt/fee-receipt.component';
 import { AddInstallmentComponent } from './add-installment/add-installment.component';
+import { AddFeeTypeComponent } from './add-fee-type/add-fee-type.component';
+import { FeeStructureComponent } from './fee-structure/fee-structure.component';
 
 const routes: Routes = [
   {
@@ -14,6 +16,14 @@ const routes: Routes = [
   {
     path: 'add-installment',
     component: AddInstallmentComponent
+  },
+  {
+    path: 'add-fee-type',
+    component: AddFeeTypeComponent
+  },
+  {
+    path: 'fee-structure',
+    component: FeeStructureComponent
   },
   {
     path: 'add-fees',

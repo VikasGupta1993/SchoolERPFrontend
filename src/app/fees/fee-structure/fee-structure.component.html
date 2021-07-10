@@ -1,0 +1,45 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style ">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">All Fee Structure</h4>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-1">
+                            <a routerLink="/dashboard/main">
+                                <i class="fas fa-home"></i> Home</a>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-2">
+                            <a href="#" onClick="return false;">Fee</a>
+                        </li>
+                        <li class="breadcrumb-item active">All</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <mat-card class="addCard">
+                <mat-card-header>
+                    <mat-card-title>All Fee Structure Lists</mat-card-title>
+                </mat-card-header> 
+                <div class="scrollme">  
+                    <table>
+                        <tr>
+                            <th>FeeHead/Install</th>
+                            <th *ngFor="let month of feeMonthData" [value]="month.className">{{month.monthName}}</th>
+                        </tr>
+                        <tr *ngFor="let feehead of feeheadlist">
+                             {{feehead}} 
+                             <ng-container *ngFor="let month of feeMonthData">
+                             <td><input type='text'/></td></ng-container>
+                        </tr>
+                    </table>
+                </div> 
+            </mat-card>
+        </div> 
+    </div>
+</section>
